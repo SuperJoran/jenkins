@@ -5,6 +5,10 @@ pipeline {
     agent { docker 'maven:3.3.3' }
 
 
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('random-password')
+    }
+
     stages {
         stage('build') {
             steps {
@@ -22,6 +26,8 @@ pipeline {
             steps {
                 timeout(time: 3, unit: 'MINUTES') {
                     echo 'Ha, I left you waiting!'
+                    echo AWS_ACCESS_KEY_ID
+                    echo AWS_ACCESS_KEY_ID_PSW
                 }
             }
         }
