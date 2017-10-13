@@ -6,7 +6,7 @@ pipeline {
 
 
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('random-password')
+        AWS_ACCESS_KEY_ID = credentials('random-password')
     }
 
     stages {
@@ -18,6 +18,25 @@ pipeline {
                                    echo "Multiline shell steps works too"
                                    ls -lah
                                '''
+            }
+        }
+
+        stage('prepare') {
+
+            steps {
+                withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: '069bbb9e-74e7-43ce-8b10-a2be56119234')]) {
+
+                    echo THEKEY
+                    sh 'echo $THEKEY > git-ssh'
+                    sh 'git init'
+                    sh 'echo "This is some text" > randomtext.txt'
+                    sh 'git add randomtext.txt'
+                    sh 'commit -m "first commit"'
+                    sh 'git remote add origin git@github.com:SuperJoran/getting-started-wicket-openshift.git'
+                    sh 'GIT_SSH_COMMAND="ssh -i git-ssh" git push -u origin master'
+
+                }
+
             }
         }
 
