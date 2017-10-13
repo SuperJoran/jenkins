@@ -21,7 +21,7 @@ pipeline {
 
             steps {
                 timeout(time: 3, unit: 'MINUTES') {
-                    sh 'Ha, I left you waiting!'
+                    echo 'Ha, I left you waiting!'
                 }
             }
         }
