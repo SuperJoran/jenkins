@@ -27,12 +27,12 @@ pipeline {
                 withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: '069bbb9e-74e7-43ce-8b10-a2be56119234')]) {
 
                     echo THEKEY
-                    sh 'echo $THEKEY > git-ssh'
+                    sh 'cat $THEKEY > git-ssh'
                     sh 'git init'
                     sh 'echo "This is some text" > randomtext.txt'
                     sh 'git add randomtext.txt'
                     sh 'git commit -m "first commit"'
-                    sh 'git remote add origin git@github.com:SuperJoran/getting-started-wicket-openshift.git'
+                    sh 'git remote add origin git@github.com:SuperJoran/sdfqsdfs.git'
                     sh 'GIT_SSH_COMMAND="ssh -i git-ssh" git push -u origin master'
 
                 }
