@@ -31,7 +31,7 @@ pipeline {
                     sh 'git init'
                     sh 'echo "This is some text" > randomtext.txt'
                     sh 'git add randomtext.txt'
-                    sh 'commit -m "first commit"'
+                    sh 'git commit -m "first commit"'
                     sh 'git remote add origin git@github.com:SuperJoran/getting-started-wicket-openshift.git'
                     sh 'GIT_SSH_COMMAND="ssh -i git-ssh" git push -u origin master'
 
