@@ -26,7 +26,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: '069bbb9e-74e7-43ce-8b10-a2be56119234')]) {
                     sh 'git --version'
-
+                    sh 'echo $GIT_HOME'
                     sh 'git --version'
                     sh 'git config core.sshCommand \'ssh -i $THEKEY\''
 
