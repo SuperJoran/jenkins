@@ -26,9 +26,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: '069bbb9e-74e7-43ce-8b10-a2be56119234')]) {
                     sh 'git --version'
-                    sh ' add-apt-repository ppa:git-core/ppa'
-                    sh ' apt-get update'
-                    sh ' apt-get install git'
+
                     sh 'git --version'
                     sh 'git config core.sshCommand \'ssh -i $THEKEY\''
 
@@ -42,6 +40,8 @@ pipeline {
                     sh 'git commit -m "first commit"'
                     sh 'git remote rm origin'
                     sh 'git remote add origin git@github.com:SuperJoran/sdfqsdfs.git'
+                    sh 'git config core.sshCommand \'ssh -i $THEKEY\''
+
                     sh 'git push -u origin master'
 
                 }
