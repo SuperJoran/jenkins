@@ -37,6 +37,7 @@ pipeline {
                     sh 'git init'
                     sh 'git add README.md'
                     sh 'git commit -m "first commit"'
+                    sh 'git remote rm origin'
                     sh 'git remote add origin git@github.com:SuperJoran/sdfqsdfs.git'
                     sh 'git config core.sshCommand \'ssh -i $THEKEY\''
 
