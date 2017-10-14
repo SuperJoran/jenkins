@@ -28,17 +28,15 @@ pipeline {
                     sh 'git --version'
                     sh 'echo $GIT_HOME'
                     sh 'git --version'
-                    sh 'git config core.sshCommand \'ssh -i $THEKEY\''
 
-                    echo THEKEY
                     sh 'echo "$(cat $THEKEY)"'
-                    sh 'git init'
                     sh 'git config user.name "Jenkins"'
                     sh 'git config user.email "Jenkins@joran.be"'
-                    sh 'echo "This is some text" > randomtext.txt'
-                    sh 'git add randomtext.txt'
+
+                    sh 'echo "# sdfqsdfs" >> README.md'
+                    sh 'git init'
+                    sh 'git add README.md'
                     sh 'git commit -m "first commit"'
-                    sh 'git remote rm origin'
                     sh 'git remote add origin git@github.com:SuperJoran/sdfqsdfs.git'
                     sh 'git config core.sshCommand \'ssh -i $THEKEY\''
 
