@@ -26,6 +26,10 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: '069bbb9e-74e7-43ce-8b10-a2be56119234')]) {
                     sh 'git --version'
+                    sh 'sudo add-apt-repository ppa:git-core/ppa'
+                    sh 'sudo apt-get update'
+                    sh 'sudo apt-get install git'
+                    sh 'git --version'
                     sh 'git config core.sshCommand \'ssh -i $THEKEY\''
 
                     echo THEKEY
