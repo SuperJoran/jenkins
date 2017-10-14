@@ -33,17 +33,10 @@ pipeline {
                     sh 'git config user.name "Jenkins"'
                     sh 'git config user.email "Jenkins@joran.be"'
 
-                    sh 'echo "# sdfqsdfs" >> README.md'
-                    sh 'git init'
-                    sh 'git add README.md'
-                    sh 'git commit -m "first commit"'
-                    sh 'git remote rm origin'
-                    sh 'git remote add origin git@github.com:SuperJoran/sdfqsdfs.git'
-                    sh 'git config core.sshCommand \'ssh -i $THEKEY\''
+                    sh 'git clone git@github.com:SuperJoran/getting-started-wicket-openshift.git'
+                    sh 'mvn release:prepare'
 
-                    sh 'git show-ref'
-
-                    sh 'git push -u origin HEAD:master'
+                    sh 'git push'
 
                 }
 
