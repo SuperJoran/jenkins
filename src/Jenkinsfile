@@ -47,7 +47,9 @@ pipeline {
 //                    sh 'git push'
 //                }
                 withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: 'Jenkins123')]) {
-                    sh 'ls'
+                    sh 'echo $(ls)'
+                    sh 'git config user.name "Jenkins"'
+                    sh 'git config user.email "Jenkins@joran.be"'
                     sh 'git config core.sshCommand \'ssh -i $THEKEY\''
                     sh 'mvn release:prepare --batch-mode -DskipTests=true'
 
