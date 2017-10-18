@@ -31,8 +31,7 @@ pipeline {
         stage('prepare') {
 
             steps {
-
-                withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: 'Jenkins123')]) {
+                sshagent (credentials: [ 'Jenkins123' ]) {
                     sh 'git --version'
                     sh 'echo $GIT_HOME'
                     sh 'git --version'
@@ -46,8 +45,11 @@ pipeline {
                     sh 'mvn release:prepare --batch-mode -DskipTests=true'
 
                     sh 'git push'
-
                 }
+//                withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: 'Jenkins123')]) {
+//
+//
+//                }
 
             }
         }
