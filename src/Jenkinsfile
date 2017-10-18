@@ -4,7 +4,18 @@
 pipeline {
     agent { docker 'maven:3.3.3' }
 
-        stages {
+    stages {
+
+        stage('Checkout') {
+            steps {
+                timestamps {
+                    script {
+                        script.git branch: "master", credentialsId: "Jenkins123", url: "git@github.com:SuperJoran/getting-started-wicket-openshift.git", clean: "false"
+
+                    }
+                }
+            }
+        }
         stage('build') {
             steps {
                 sh 'mvn --version'
