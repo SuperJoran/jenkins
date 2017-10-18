@@ -43,7 +43,7 @@ pipeline {
 
                     sh 'git config core.sshCommand \'ssh -i $THEKEY\''
 
-                    sh 'mvn release:prepare'
+                    sh 'mvn release:prepare --batch-mode -DskipTests=true'
 
                     sh 'git push'
 
