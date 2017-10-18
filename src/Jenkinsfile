@@ -1,5 +1,9 @@
 #!groovy
 
+@Library('centaurus')
+import static Config.*
+
+def pom
 
 pipeline {
     agent { docker 'maven:3.3.3' }
@@ -24,7 +28,8 @@ pipeline {
         stage('prepare') {
 
             steps {
-                withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: 'openshift-jenkins')]) {
+
+                withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: 'Jenkins123')]) {
                     sh 'git --version'
                     sh 'echo $GIT_HOME'
                     sh 'git --version'
