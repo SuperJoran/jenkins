@@ -9,10 +9,11 @@ pipeline {
         stage('Checkout') {
             steps {
                 timestamps {
-                    script {
-                        script.git branch: "master", credentialsId: "Jenkins123", url: "git@github.com:SuperJoran/getting-started-wicket-openshift.git", clean: "false"
-
-                    }
+                    git(
+                            url: 'git@github.com:SuperJoran/getting-started-wicket-openshift.git',
+                            credentialsId: 'Jenkins123',
+                            branch: 'master'
+                    )
                 }
             }
         }
