@@ -1,8 +1,5 @@
 #!groovy
 
-import static Config.*
-
-def pom
 
 pipeline {
     agent { docker 'maven:3.3.3' }
