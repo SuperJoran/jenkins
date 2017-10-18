@@ -1,6 +1,5 @@
 #!groovy
 
-@Library('centaurus')
 import static Config.*
 
 def pom
