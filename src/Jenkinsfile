@@ -43,7 +43,6 @@ pipeline {
 
                     sh 'git config core.sshCommand \'ssh -i $THEKEY\''
 
-                    sh 'git clone git@github.com:SuperJoran/getting-started-wicket-openshift.git'
                     sh 'mvn release:prepare'
 
                     sh 'git push'
