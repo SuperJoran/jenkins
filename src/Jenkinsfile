@@ -4,12 +4,7 @@
 pipeline {
     agent { docker 'maven:3.3.3' }
 
-
-    environment {
-        AWS_ACCESS_KEY_ID = credentials('random-password')
-    }
-
-    stages {
+        stages {
         stage('build') {
             steps {
                 sh 'mvn --version'
