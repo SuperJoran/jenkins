@@ -31,33 +31,15 @@ pipeline {
         stage('prepare') {
 
             steps {
-//                sshagent (credentials: [ 'Jenkins123' ]) {
-//                    sh 'git --version'
-//                    sh 'echo $GIT_HOME'
-//                    sh 'git --version'
-//
-//                    sh 'echo "$(cat $THEKEY)"'
-//                    sh 'git config user.name "Jenkins"'
-//                    sh 'git config user.email "Jenkins@joran.be"'
-//
-//                    sh 'git config core.sshCommand \'ssh -i $THEKEY\''
-//
-//                    sh 'mvn release:prepare --batch-mode -DskipTests=true'
-//
-//                    sh 'git push'
-//                }
                 withCredentials([sshUserPrivateKey(keyFileVariable: 'THEKEY', credentialsId: 'Jenkins123')]) {
-                    sh 'echo $(ls)'
-                    sh 'git config user.name "Jenkins"'
-                    sh 'git config user.email "Jenkins@joran.be"'
-                    sh 'git config core.sshCommand \'ssh -i $THEKEY\''
-                    sh 'mvn release:prepare --batch-mode -DskipTests=true'
-
+                sh 'git config user.name "Jenkins"'
+                sh 'git config user.email "Jenkins@joran.be"'
+                sh 'git clone git@github.com:SuperJoran/getting-started-wicket-openshift.git'
+                sh 'cd getting-started-wicket-openshift'
+                sh 'GIT_SSH_COMMAND='ssh -i $THEKEY' mvn release:prepare --batch-mode -DskipTests=true'
                 }
-
             }
         }
-
         stage('deploy') {
 
             steps {
